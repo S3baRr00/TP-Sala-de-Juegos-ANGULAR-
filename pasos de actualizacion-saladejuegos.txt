@@ -1,0 +1,27 @@
+para generar node_modules y actualizar el angular/cli local:
+npm uninstall --save-dev angular-cli
+npm install --save-dev @angular/cli@latest
+
+migrar angular.json:
+ng update @angular/cli from=1.7.2 --migrate-only
+
+para actualizar angular:
+
+de 4.4 a 5:
+npm install @angular/animations@^5.0.0 @angular/common@^5.0.0 @angular/compiler@^5.0.0 @angular/compiler-cli@^5.0.0 @angular/core@^5.0.0 @angular/forms@^5.0.0 @angular/http@^5.0.0 @angular/platform-browser@^5.0.0 @angular/platform-browser-dynamic@^5.0.0 @angular/platform-server@^5.0.0 @angular/router@^5.0.0 typescript@2.4.2 rxjs@^5.5.2
+npm install typescript@2.4.2 --save-exact
+
+de 5 a ult. version:
+ncu
+ncu -u
+npm install
+
+agregar bootstrap y fonts-awsome:
+npm install bootstrap --save
+npm install fonts-awsome --save
+asegurarse de que package.json tenga el path de estos paquetes en styles:[  ]
+
+logica:
+Cambiar imports en archivos .ts correspondientes de Http; HttpClients; Observables (corregir paths);
+agregar parametros faltantes a clases.
+
