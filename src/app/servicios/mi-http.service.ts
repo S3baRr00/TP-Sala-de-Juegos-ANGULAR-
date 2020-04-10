@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import {Http ,Response} from '@angular/http';
+import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class MiHttpService {
   
-  constructor(public http:Http) { }
+  constructor(public http:HttpClient) { }
   
   public httpGetPromise(url: string, objeto:any){
 
