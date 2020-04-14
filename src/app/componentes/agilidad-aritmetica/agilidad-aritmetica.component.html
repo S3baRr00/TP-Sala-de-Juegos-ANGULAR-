@@ -1,38 +1,87 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<!--app-menu></app-menu-->
-<!-- index.html -->
+<div class="text-center text-uppercase">
+  <h1>{{ nuevoJuego.nombre }}</h1>
+</div>
+<form class="form w-75 bg-warning text-center p-3 border rounded mx-auto" name="juego">
+  <div class="form-group row">
+    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+      >Primer número:
+    </label>
+    <div class="col-sm-9">
+      <input
+        [(ngModel)]="nuevoJuego.numeroUno"
+        id="numero"
+        placeholder="ingrese numero"
+        name="numeroIngresado"
+        type="text"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+      >Operador:
+    </label>
+    <div class="col-sm-9">
+      <input
+        [(ngModel)]="nuevoJuego.operador"
+        placeholder="ingrese operador"
+        name="numeroIngresado"
+        type="text"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+      >Segundo número:
+    </label>
+    <div class="col-sm-9">
+      <input
+        [(ngModel)]="nuevoJuego.numeroDos"
+        placeholder="ingrese numero"
+        name="numeroIngresado"
+        type="text"
+        class="form-control"
+        readonly
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+      >Respuesta:</label
+    >
+    <div class="col-sm-9">
+      <input
+        [(ngModel)]="nuevoJuego.respuestaIngresada"
+        placeholder="ingrese su respuesta"
+        name="numeroIngresado"
+        type="text"
+        class="form-control"
+      />
+    </div>
+  </div>
+  <div class="form-group">
+    <h2 [hidden]="ocultarVerificar">
+      <button (click)="verificar()" class="btn btn-success btn-lg btn-block">
+        Verificar {{ Tiempo }}
+      </button>
+    </h2>
+  </div>
+  <div class="form-group">
+    <h2 [hidden]="!ocultarVerificar">
+      <button (click)="NuevoJuego()" class="btn btn-primary btn-lg btn-block">
+        Nuevo Problema
+      </button>
+    </h2>
+  </div>
+  <div class="form-group">
+    <h2>
+      <p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p>
+    </h2>
 
-
-<form name="juego">
-<ul>
-   <li>
-   Primer número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-  
-  </li>
-  <li>
-   Operador: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-    
-  </li>
-  <li>
-   Segundo número: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%" readonly/>
-    
-  </li>
-  <li>
-    Respuesta: <input [(ngModel)]="nuevoJuego.numeroIngresado" placeholder="ingrese numero" name="numeroIngresado" type="text" class="form-control" style="width:50%"/>
-     
-   </li>
-  <li>
-    <h2 [hidden]="ocultarVerificar" ><button (click)="verificar()" class="btn btn-success btn-lg">Verificar {{Tiempo}} </button></h2>
-  </li>
-  <li>
-    <h2 [hidden]="!ocultarVerificar"><button  (click)="NuevoJuego()"  class="btn btn-info btn-lg">Nuevo</button></h2>
-  </li>
-  <li>
-    <h2><p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p></h2>
-
-    <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
-    <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
-  </li>
-</ul>
-
+    <h3 class="text-uppercase text-success" [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
+    <h3 class="text-uppercase text-danger" [hidden]="nuevoJuego.gano">usted aún no gano</h3>
+  </div>
 </form>

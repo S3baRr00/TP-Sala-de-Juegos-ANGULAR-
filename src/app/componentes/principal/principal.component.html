@@ -1,83 +1,116 @@
 <app-cabecera> </app-cabecera>
 
-<div class="container mt-3 mx-auto">
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-danger">
-      <div class="media-body">
-        <div class="hero-text">
-          <h4>Menú Principal</h4>
+
+<div class="container mt-5 mx-auto">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+    <div class="col">
+      <div
+        class="card text-white bg-success list-group-item-action"
+        data-toggle="collapse"
+        data-target="#collapseExampleUno"
+        aria-expanded="false"
+        aria-controls="collapseExampleUno"
+      >
+        <img
+          src="./assets/imagenes/salaDeJuegos.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Juegos
+          </h5>
+          <div class="collapse" id="collapseExampleUno">
+            <p class="card-text">
+              Una sala de juegos de tematica sencilla. Actualmente hay 5 juegos
+              disponibles.
+            </p>
+            <a routerLink="/Juegos" class="btn btn-primary">Entrar a Jugar</a>
+          </div>
         </div>
       </div>
-    </li>
-    <li class="list-group-item list-group-item-success">
-      <a routerLink="/Juegos">
-        <div class="media">
-          <div class="media-left">
-            <img
-              src="./assets/imagenes/saladejuegos.png"
-              class="media-object imagenDeMenu"
-            />
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Juegos</h4>
-            <p>
-              El método lúdico es un conjunto de estrategias diseñadas para
-              crear un ambiente de armonía en los estudiantes que están inmersos
-              en el proceso de aprendizaje. Este método busca que los alumnos se
-              apropien de los temas impartidos por los docentes utilizando el
-              juego.
+    </div>
+    <div class="col">
+      <div
+        class="card text-white bg-warning list-group-item-action"
+        data-toggle="collapse"
+        data-target="#collapseExampleDos"
+        aria-expanded="false"
+        aria-controls="collapseExampleDos"
+      >
+        <img
+          src="./assets/imagenes/listado.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Listado
+          </h5>
+          <div class="collapse" id="collapseExampleDos">
+            <p class="card-text">
+              Los listados de los resultados con ordenamiento y busqueda
             </p>
+            <a routerLink="/listado" class="btn btn-primary">Ver Listado</a>
           </div>
         </div>
-      </a>
-    </li>
-    <li class="list-group-item list-group-item-info">
-      <a routerLink="/Listado">
-        <div class="media">
-          <div class="media-left">
-            <img
-              src="./assets/imagenes/listado.jpg"
-              class="media-object imagenDeMenu"
-            />
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Listados de resultados</h4>
-            <p>Los listados de los resultados con ordenamiento y busqueda</p>
-          </div>
-        </div>
-      </a>
-    </li>
-    <li class="list-group-item list-group-item-warning">
-      <a routerLink="/Juegos">
-        <div class="media">
-          <div class="media-left">
-            <img
-              src="./assets/imagenes/Configuracion.png"
-              class="media-object imagenDeMenu"
-            />
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Configuraci&oacute;n</h4>
-            <p>Ajustes de la aplicacion y los métodos de autentificación</p>
+      </div>
+    </div>
+    <div class="col">
+      <div
+        class="card text-white bg-info list-group-item-action"
+        data-toggle="collapse"
+        data-target="#collapseExampleTres"
+        aria-expanded="false"
+        aria-controls="collapseExampleTres"
+      >
+        <img
+          src="./assets/imagenes/configuracion.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Configuracion
+          </h5>
+          <div class="collapse" id="collapseExampleTres">
+            <p class="card-text">
+              Ajustes de la aplicacion y los métodos de autentificación
+            </p>
+            <a routerLink="/Juegos" class="btn btn-primary"
+              >Ir a Configuracion</a
+            >
           </div>
         </div>
-      </a>
-    </li>
-    <li class="list-group-item list-group-item-warning">
-      <a routerLink="/Jugadores">
-        <div class="media">
-          <div class="media-left">
-            <img
-              src="./assets/imagenes/jugadores.png"
-              class="media-object imagenDeMenu"
-            />
-          </div>
-          <div class="media-body">
-            <h4 class="media-heading">Jugadores</h4>
-            <p>Listado de jugadores</p>
+      </div>
+    </div>
+    <div class="col">
+      <div
+        class="card text-white bg-dark list-group-item-action"
+        data-toggle="collapse"
+        data-target="#collapseExampleCuatro"
+        aria-expanded="false"
+        aria-controls="collapseExampleCuatro"
+      >
+        <img
+          src="./assets/imagenes/jugadores.png"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            Jugadores
+          </h5>
+          <div class="collapse" id="collapseExampleCuatro">
+            <p class="card-text">
+              Listado de jugadores
+            </p>
+            <a routerLink="/Jugadores" class="btn btn-primary"
+              >Ver lista de Jugadores</a
+            >
           </div>
         </div>
-      </a>
-    </li>
-  </ul>
+      </div>
+    </div>
+  </div>
 </div>
