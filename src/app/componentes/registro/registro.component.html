@@ -1,142 +1,150 @@
-  <div class="container bg-dark rounded-lg mt-5 w-50 mx-auto ">
-    <form class="form text-white">
-      <div class="form-group">
-        <label for="mail"><b>Email</b></label>
-        <input
-          type="email"
-          id="mail"
-          class="form-control"
-          placeholder="Ingresa tu correo"
-          name="email"
-          required
-        />
-      </div>
+<div class="container bg-dark rounded-lg mt-5 w-75 mx-auto">
+  <form class="form text-white">
+    <div class="form-group">
+      <label for="mail"><b>Email</b></label>
+      <input
+        type="email"
+        id="mail"
+        class="form-control"
+        placeholder="Ingresa tu correo"
+        name="email"
+        required
+      />
+    </div>
 
-      <div class="form-group">
-        <label for="clave"><b>Clave</b></label>
-        <input
-          type="password"
-          id="clave"
-          class="form-control"
-          placeholder="la clave"
-          name="psw"
-          required
-        />
-      </div>
+    <div class="form-group">
+      <label for="clave"><b>Clave</b></label>
+      <input
+        type="password"
+        id="clave"
+        class="form-control"
+        placeholder="la clave"
+        name="psw"
+        required
+      />
+    </div>
 
-      <div class="form-group">
-        <label for="clave-repeat"><b>Repita la clave</b></label>
-        <input
-          type="password"
-          id="clave-repeat"
-          class="form-control"
-          placeholder="la misma clave de arriba"
-          name="psw-repeat"
-          required
-        />
-      </div>
+    <div class="form-group">
+      <label for="clave-repeat"><b>Repita la clave</b></label>
+      <input
+        type="password"
+        id="clave-repeat"
+        class="form-control"
+        placeholder="la misma clave de arriba"
+        name="psw-repeat"
+        required
+      />
+    </div>
 
-      <div class="form-group form-check">
-        <input
-          type="checkbox"
-          class="form-check-input"
-          id="check-recordar"
-          checked="checked"
-        />
-        <label class="form-check-label" for="check-recordar"
-          >Recordar mis datos</label
+    <div class="form-group form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="check-recordar"
+        checked="checked"
+      />
+      <label class="form-check-label" for="check-recordar"
+        >Recordar mis datos</label
+      >
+    </div>
+
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="check-terminos" />
+      <label class="form-check-label" for="check-terminos"
+        >Al crear la cuenta, acépto los
+        <a class="text-info" data-toggle="modal" data-target="#modal-terminos"
+          >Terminos y condiciones</a
         >
-      </div>
+        .</label
+      >
+    </div>
 
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="check-terminos" />
-        <label class="form-check-label" for="check-terminos"
-          >Al crear la cuenta, acépto los
-          <a class="text-info" data-toggle="modal" data-target="#modal-terminos"
-            >Terminos y condiciones</a
-          >
-          .</label
-        >
-      </div>
-
-      <div class="modal fade" id="modal-terminos" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content bg-dark">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-titulo">
-                Terminos y condiciones
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>
-                El Gobierno de la República Argentina (en adelante el “Gobierno
-                Nacional”) no es responsable por los daños y perjuicios que
-                puedan surgir, incluyendo, sin límite, daños, pérdidas o gastos
-                directos, indirectos, que surjan en relación con el uso de los
-                Activos Digitales o la imposibilidad de uso, en relación con
-                cualquier falla en el vencimiento, error, omisión, interrupción,
-                defecto, demora en la operación o transmisión, virus de
-                computadora o falla del sistema de línea, aún en el caso de que
-                el Gobierno Nacional o sus representantes fueran informados
-                sobre la posibilidad de dichos daños, pérdidas o gastos.
-              </p>
-              <p>
-                El Gobierno Nacional no controla ni garantiza la ausencia de
-                virus ni de otros elementos en los contenidos que puedan
-                producir alteraciones en su sistema informático (software y
-                hardware) o en los documentos electrónicos y ficheros
-                almacenados en su sistema informático.
-              </p>
-              <p>
-                El Gobierno Nacional no puede garantizar que la transmisión de
-                información por parte de los Usuarios sea completamente segura.
-                El Usuario asume este riesgo.
-              </p>
-              <strong
-                ><p>
-                  No leer lo anterior, es solo un ejemplo sacado de
-                  https://www.argentina.gob.ar/terminos-y-condiciones
-                </p></strong
-              >
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Cancelar
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onclick="document.getElementById('check-terminos').checked='true'"
-                data-dismiss="modal"
-              >
-                Acepto
-              </button>
-            </div>
+    <div class="modal fade" id="modal-terminos" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-titulo">
+              Terminos y condiciones
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              El Gobierno de la República Argentina (en adelante el “Gobierno
+              Nacional”) no es responsable por los daños y perjuicios que puedan
+              surgir, incluyendo, sin límite, daños, pérdidas o gastos directos,
+              indirectos, que surjan en relación con el uso de los Activos
+              Digitales o la imposibilidad de uso, en relación con cualquier
+              falla en el vencimiento, error, omisión, interrupción, defecto,
+              demora en la operación o transmisión, virus de computadora o falla
+              del sistema de línea, aún en el caso de que el Gobierno Nacional o
+              sus representantes fueran informados sobre la posibilidad de
+              dichos daños, pérdidas o gastos.
+            </p>
+            <p>
+              El Gobierno Nacional no controla ni garantiza la ausencia de virus
+              ni de otros elementos en los contenidos que puedan producir
+              alteraciones en su sistema informático (software y hardware) o en
+              los documentos electrónicos y ficheros almacenados en su sistema
+              informático.
+            </p>
+            <p>
+              El Gobierno Nacional no puede garantizar que la transmisión de
+              información por parte de los Usuarios sea completamente segura. El
+              Usuario asume este riesgo.
+            </p>
+            <strong
+              ><p>
+                No leer lo anterior, es solo un ejemplo sacado de
+                <a href="https://www.argentina.gob.ar/terminos-y-condiciones"
+                  >esta pagina</a
+                >
+              </p></strong
+            >
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="document.getElementById('check-terminos').checked='true'"
+              data-dismiss="modal"
+            >
+              Acepto
+            </button>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row" role="group">
-        <div class="col">
-          <button type="submit" class="btn btn-success btn-block">Registrarme</button>
-        </div>
-        <div class="col">
-          <button type="button" routerLink="/Principal" class="btn btn-danger btn-block">
-            Cancelar
-          </button>
-        </div>
+    <div class="row" role="group">
+      <div class="col">
+        <button type="submit" class="btn btn-success btn-block">
+          Registrarme
+        </button>
       </div>
-    </form>
-  </div>
+      <div class="col">
+        <button
+          type="button"
+          routerLink="/Principal"
+          class="btn btn-danger btn-block"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

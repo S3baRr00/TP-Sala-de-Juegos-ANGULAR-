@@ -25,16 +25,15 @@ import { JugadoresListadoComponent } from '../componentes/jugadores-listado/juga
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
-{path: 'Jugadores' , component: JugadoresListadoComponent},
 {path: '' , component: PrincipalComponent},
 {path: 'Login' , component: LoginComponent},
-{path: 'Mapa' , component: MapaDeGoogleComponent},
+{path: 'Jugadores' , component: JugadoresListadoComponent},
 {path: 'QuienSoy' , component: QuienSoyComponent},
 {path: 'Registro' , component: RegistroComponent},
 {path: 'Principal' , component: PrincipalComponent},
 {path: 'Listado' , component: ListadoComponent},
 {path: 'Paises' , component: ListadoDePaisesComponent},
-
+{path: 'Mapa' , component: MapaDeGoogleComponent},
 { path: 'Juegos' ,
 component: JuegosComponent ,
 children:

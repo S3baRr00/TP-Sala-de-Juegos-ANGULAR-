@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { JuegoServiceService } from '../../servicios/juego-service.service';
 
 @Component({
@@ -20,6 +19,7 @@ export class ListadoComponent implements OnInit {
     
   }
 
+  
   llamaService(){
     console.log("llamaService");
     this.listadoParaCompartir= this.miServicioJuego.listar();

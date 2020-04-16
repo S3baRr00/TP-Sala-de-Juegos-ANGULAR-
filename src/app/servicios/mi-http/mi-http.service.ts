@@ -1,13 +1,15 @@
 import { log } from 'util';
 import { Injectable } from '@angular/core';
 
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+
 @Injectable()
 export class MiHttpService {
 
-  constructor( public http: Http ) { }
+  constructor( public http: HttpClient ) { }
 
   public httpGetP ( url: string)
   {

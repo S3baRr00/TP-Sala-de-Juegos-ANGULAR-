@@ -3,14 +3,14 @@
 </div>
 <form class="form w-75 bg-warning text-center p-3 border rounded mx-auto" name="juego">
   <div class="form-group row">
-    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+    <label for="numeroUno" class="col-sm-3 col-form-label text-uppercase"
       >Primer número:
     </label>
     <div class="col-sm-9">
       <input
         [(ngModel)]="nuevoJuego.numeroUno"
-        id="numero"
         placeholder="ingrese numero"
+        id="numeroUno"
         name="numeroIngresado"
         type="text"
         class="form-control"
@@ -19,13 +19,14 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+    <label for="operador" class="col-sm-3 col-form-label text-uppercase"
       >Operador:
     </label>
     <div class="col-sm-9">
       <input
         [(ngModel)]="nuevoJuego.operador"
         placeholder="ingrese operador"
+        id="operador"
         name="numeroIngresado"
         type="text"
         class="form-control"
@@ -34,13 +35,14 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+    <label for="numeroDos" class="col-sm-3 col-form-label text-uppercase"
       >Segundo número:
     </label>
     <div class="col-sm-9">
       <input
         [(ngModel)]="nuevoJuego.numeroDos"
         placeholder="ingrese numero"
+        id="numeroDos"
         name="numeroIngresado"
         type="text"
         class="form-control"
@@ -49,7 +51,7 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="numero" class="col-sm-3 col-form-label text-uppercase"
+    <label for="respuestaIngresada" class="col-sm-3 col-form-label text-uppercase"
       >Respuesta:</label
     >
     <div class="col-sm-9">
@@ -57,6 +59,7 @@
         [(ngModel)]="nuevoJuego.respuestaIngresada"
         placeholder="ingrese su respuesta"
         name="numeroIngresado"
+        id="respuestaIngresada"
         type="text"
         class="form-control"
       />
@@ -77,7 +80,7 @@
     </h2>
   </div>
   <div class="form-group">
-    <h2>
+    <h2 *ngIf="nuevoJuego.respuestaIngresada === ''">
       <p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p>
     </h2>
 

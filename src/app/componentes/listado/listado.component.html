@@ -1,14 +1,28 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a routerLink="/Principal" class="navbar-brand">Sala De Juegos</a>
+    <button
+      type="button"
+      class="btn navbar-toggler"
+      data-toggle="collapse"
+      data-target="#myNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" (click)="llamaService()">Servicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="llamaServicePromesa()">Serv Promesa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="llamaServicePromesa()">Serv observable</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
 
-<!-- <input type="button" (click)="llamaService()" class="btn btn-info" value="Pulsame" > 
-<input type="button" (click)="llamaServicePromesa()" class="btn btn-info" value="Pulsame Promesa">
- -->
-<!-- Centered Pills -->
-<!-- <ul class="nav nav-pills nav-justified">
-    <li class="active"><a routerLink="/Principal">Sala de Juegos</a></li>
-    <li><a (click)="llamaService()">Servicio</a></li>
-    <li><a (click)="llamaServicePromesa()">Serv Promesa</a></li>
-    <li><a (click)="llamaServicePromesa()">Serv observable</a></li>
-  </ul>
-  
-<app-listado-de-resultados [listado]="listadoParaCompartir"> </app-listado-de-resultados> -->
-
+<app-listado-de-resultados [listado]="listadoParaCompartir"></app-listado-de-resultados>
