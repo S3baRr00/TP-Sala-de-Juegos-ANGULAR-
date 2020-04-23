@@ -1,0 +1,63 @@
+<div class="text-center text-uppercase">
+  <h1>{{ nuevoJuego.nombre }}</h1>
+</div>
+<form
+  class="form w-75 bg-warning text-center p-3 border rounded mx-auto"
+  name="juego"
+>
+  <div class="form-group p-3 row" [hidden]="ocultarVerificar">
+    <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('0')">
+      <img
+        src="./assets/imagenes/ppt-piedra.png"
+        class="img-fluid imagen-ppt"
+        alt="piedra"
+    /></a>
+    <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('1')">
+      <img
+        src="./assets/imagenes/ppt-papel.png"
+        class="img-fluid imagen-ppt"
+        alt="papel"
+    /></a>
+    <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('2')">
+      <img
+        src="./assets/imagenes/ppt-tijera.png"
+        class="img-fluid imagen-ppt"
+        alt="tijera"
+    /></a>
+  </div>
+  <div class="form-group">
+    <h2 [hidden]="!ocultarVerificar">
+      <button (click)="NuevoJuego()" class="btn btn-primary btn-lg btn-block">
+        Nuevo Juego
+      </button>
+    </h2>
+    <h2 [hidden]="ocultarVerificar && nuevoJuego.figuraJugador == null">
+      <button (click)="verificar()" class="btn btn-success btn-lg btn-block">
+        Verificar
+      </button>
+    </h2>
+  </div>
+  <div class="form-group">
+    <h2 *ngIf="!ocultarVerificar && nuevoJuego.figuraJugador == null">
+      <p><i class="fa fa-spinner fa-spin"></i>Elige...</p>
+    </h2>
+    <h2 *ngIf="nuevoJuego.gano != null" class="text-uppercase">
+      El jugador rival a elegido {{ nuevoJuego.figuraRival }}
+    </h2>
+    <h3 class="text-uppercase text-success" *ngIf ="nuevoJuego.gano == true ">
+      usted ha ganado
+    </h3>
+    <h3
+      class="text-uppercase text-danger"
+      *ngIf ="nuevoJuego.gano == false && empate == false"
+    >
+      usted ha perdido
+    </h3>
+    <h3
+      class="text-uppercase text-danger"
+      *ngIf ="nuevoJuego.gano == false && empate == true"
+    >
+      usted ha empatado, otra vez!
+    </h3>
+  </div>
+</form>

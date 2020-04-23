@@ -10,11 +10,12 @@ export class JuegoAgilidad extends Juego {
 
   constructor(nombre?: string, gano?: boolean, jugador?: string)
   {
-    super("Adivina el número", gano, jugador);
+    super("Agilidad Matematica", gano, jugador);
+    this.respuestaIngresada=0;
   }
   public verificar()
   {
-    if (this.respuesta == parseInt(this.respuestaIngresada)) {
+    if (this.respuesta == this.respuestaIngresada) {
       this.gano = true;
     }
     if (this.gano) {

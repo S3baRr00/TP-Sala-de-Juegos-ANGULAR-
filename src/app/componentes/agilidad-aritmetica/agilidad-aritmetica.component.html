@@ -8,13 +8,14 @@
     </label>
     <div class="col-sm-9">
       <input
-        [(ngModel)]="nuevoJuego.numeroUno"
+        
         placeholder="ingrese numero"
         id="numeroUno"
         name="numeroIngresado"
         type="text"
         class="form-control"
         readonly
+        value="{{nuevoJuego.numeroUno}}"
       />
     </div>
   </div>
@@ -24,12 +25,12 @@
     </label>
     <div class="col-sm-9">
       <input
-        [(ngModel)]="nuevoJuego.operador"
         placeholder="ingrese operador"
         id="operador"
         name="numeroIngresado"
         type="text"
         class="form-control"
+        value="{{nuevoJuego.operador}}"
         readonly
       />
     </div>
@@ -40,12 +41,12 @@
     </label>
     <div class="col-sm-9">
       <input
-        [(ngModel)]="nuevoJuego.numeroDos"
         placeholder="ingrese numero"
         id="numeroDos"
         name="numeroIngresado"
         type="text"
         class="form-control"
+        value="{{nuevoJuego.numeroDos}}"
         readonly
       />
     </div>
@@ -56,12 +57,13 @@
     >
     <div class="col-sm-9">
       <input
-        [(ngModel)]="nuevoJuego.respuestaIngresada"
+        
         placeholder="ingrese su respuesta"
         name="numeroIngresado"
         id="respuestaIngresada"
         type="text"
         class="form-control"
+        [(ngModel)]="nuevoJuego.respuestaIngresada"
       />
     </div>
   </div>
@@ -80,7 +82,7 @@
     </h2>
   </div>
   <div class="form-group">
-    <h2 *ngIf="nuevoJuego.respuestaIngresada === ''">
+    <h2 *ngIf="!ocultarVerificar">
       <p><i class="fa fa-spinner fa-spin"></i>Esperando numero...</p>
     </h2>
 
