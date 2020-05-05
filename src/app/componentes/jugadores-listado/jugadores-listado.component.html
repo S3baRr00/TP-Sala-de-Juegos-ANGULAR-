@@ -12,19 +12,19 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" (click)="TraerTodos()">Todos los jugadores</a>
+          <a class="nav-link active" (click)='filtrar("Todas")'>Todos los jugadores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="TraerGanadores()">Los ganadores</a>
+          <a class="nav-link active" (click)='filtrar("Ganador")'>Los ganadores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="TraerPerdedores()">Los perdedores</a>
+          <a class="nav-link active" (click)='filtrar("Perdedor")'>Los perdedores</a>
         </li>
       </ul>
     </div>
   </nav>
 </header>
-
+<div class="table-responsive-xl">
 <table class="table table-striped table-hover table-dark text-center">
   <thead class="text-uppercase">
     <tr>
@@ -36,10 +36,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let jugador of listado">
+      <ng-container *ngIf='jugador != null'>
       <td>{{ jugador.usuario }}</td>
       <td>{{ jugador.cuit }}</td>
       <td>{{ jugador.sexo | sexo | uppercase }}</td>
       <td>{{ jugador.gano }}</td>
+    </ng-container>
     </tr>
   </tbody>
 </table>
+</div>

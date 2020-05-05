@@ -9,8 +9,6 @@ import { ErrorComponent } from "../componentes/error/error.component";
 import { PrincipalComponent } from "../componentes/principal/principal.component";
 import { AgilidadAritmeticaComponent } from "../componentes/agilidad-aritmetica/agilidad-aritmetica.component";
 import { MenuComponent } from "../componentes/menu/menu.component";
-import { AdivinaMasListadoComponent } from "../componentes/adivina-mas-listado/adivina-mas-listado.component";
-import { AgilidadMasListadoComponent } from "../componentes/agilidad-mas-listado/agilidad-mas-listado.component";
 import { ListadoComponent } from "../componentes/listado/listado.component";
 import { ListadosComponent } from "../componentes/listados/listados.component";
 import { JuegosComponent } from "../componentes/juegos/juegos.component";
@@ -23,7 +21,10 @@ import { MapaDeGoogleComponent } from "../componentes/mapa-de-google/mapa-de-goo
 import { JugadoresListadoComponent } from "../componentes/jugadores-listado/jugadores-listado.component";
 import { PiedraPapelOTijeraComponent } from "../componentes/piedra-papel-o-tijera/piedra-papel-o-tijera.component";
 import { AnagramaComponent } from "../componentes/anagrama/anagrama.component";
-import { BlackjackComponent } from '../componentes/blackjack/blackjack.component';
+import { TatetiComponent } from "../componentes/tateti/tateti.component";
+import { EncontrarComponent } from '../componentes/encontrar/encontrar.component';
+import { JuegosMasListadosComponent } from '../componentes/juegos-mas-listados/juegos-mas-listados.component';
+
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
@@ -43,11 +44,11 @@ const MiRuteo = [
       { path: "", component: MenuCardComponent },
       { path: "Anagrama", component: AnagramaComponent },
       { path: "Adivina", component: AdivinaElNumeroComponent },
-      { path: "AdivinaMasListado", component: AdivinaMasListadoComponent },
-      { path: "AgilidadaMasListado", component: AgilidadMasListadoComponent },
       { path: "Agilidad", component: AgilidadAritmeticaComponent },
       { path: "PiedraPapelTijera", component: PiedraPapelOTijeraComponent },
-      { path: "Blackjack", component: BlackjackComponent },
+      { path: "Tateti", component: TatetiComponent },
+      { path: "Encontrar", component: EncontrarComponent },
+      { path: "juegosMasListado/:juego", component: JuegosMasListadosComponent },
     ],
   },
   { path: "**", component: ErrorComponent },

@@ -1,50 +1,105 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { JuegoPiedraPapelTijera } from "../../clases/juego-piedra-papel-tijera";
+import { ResultadosService } from '../../servicios/resultados.service';
+import { AuthService } from '../../servicios/auth.service'
+import { Resultados } from "../../clases/resultados.model";
 
 @Component({
   selector: "app-piedra-papel-o-tijera",
   templateUrl: "./piedra-papel-o-tijera.component.html",
   styleUrls: ["./piedra-papel-o-tijera.component.css"],
 })
-export class PiedraPapelOTijeraComponent implements OnInit {
+export class PiedraPapelOTijeraComponent implements OnInit, OnDestroy {
   nuevoJuego: JuegoPiedraPapelTijera;
-  empate=null;
+  empate = null;
   ocultarVerificar: boolean;
-  constructor() {
+  sub;
+  listadoParaCompartir: Array<any>;
+  detalle: string;
+  resultado: string;
+
+  constructor(private resSrv: ResultadosService, private user: AuthService) {
     this.ocultarVerificar = true;
     this.nuevoJuego = new JuegoPiedraPapelTijera();
     console.info("Inicio PPT");
+    this.obtenerLista();
   }
 
-  obtenerValor(valor: string){
+  obtenerValor(valor: string) {
     this.nuevoJuego.figuraJugador = parseInt(valor);
     console.log(valor);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   NuevoJuego() {
     this.ocultarVerificar = false;
-    this.empate= null;
+    this.empate = null;
     this.nuevoJuego.gano = null;
   }
 
   verificar() {
     this.nuevoJuego.jugar();
-    console.log('jugador rival:'+ this.nuevoJuego.figuraRival);
-    console.log('jugador:'+ this.nuevoJuego.figuraJugador);
+    console.log('jugador rival:' + this.nuevoJuego.figuraRival);
+    console.log('jugador:' + this.nuevoJuego.figuraJugador);
     if (!this.nuevoJuego.verificar()) {
       if (this.nuevoJuego.figuraJugador === this.nuevoJuego.figuraRival) {
         this.empate = true;
+        this.detalle = 'ambos usaron ' + this.nuevoJuego.figuraJugador;
+        this.resultado = 'Empate';
         this.nuevoJuego.figuraJugador = null;
       } else {
         this.empate = false;
+        this.detalle = 'uso ' + this.nuevoJuego.figuraJugador + ' contra ' + this.nuevoJuego.figuraRival;
+        this.resultado = 'Derrota';
         this.ocultarVerificar = true;
         this.nuevoJuego.figuraJugador = null;
       }
-    } else{
+    } else {
       this.ocultarVerificar = true;
+      this.detalle = 'uso ' + this.nuevoJuego.figuraJugador + ' contra ' + this.nuevoJuego.figuraRival;
+      this.resultado = 'Victoria';
       this.nuevoJuego.figuraJugador = null;
     }
+    if (this.user.isLoggedIn) {
+      this.generarResultado();
+    }
   }
+
+  obtenerLista() {
+    this.sub = this.resSrv.getResultados().subscribe(data => {
+      this.listadoParaCompartir = data.map(e => {
+        const data = e.payload.doc.data() as Resultados;
+        data.id = e.payload.doc.id;
+        return { ...data };
+      });
+    });
+  }
+
+
+  generarResultado() {
+    let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
+      find(resultados => resultados.usuario === this.user.user.email);
+    console.log(existe);
+    if (existe != undefined) {
+      existe.resultado = this.resultado;
+      existe.detalles = this.detalle;
+      this.resSrv.updateResultado(existe);
+    } else {
+      let resultados: Resultados = {
+        'id': '',
+        'usuario': this.user.user.email,
+        'juego': this.nuevoJuego.nombre,
+        'resultado': this.resultado,
+        'detalles': this.detalle
+      }
+      this.resSrv.createResultado(resultados);
+    }
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
+
 }
+

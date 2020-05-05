@@ -1,0 +1,95 @@
+<div class="text-center text-uppercase">
+    <h1>
+        {{ nuevoJuego.nombre }}
+    </h1>
+</div>
+<form class="form w-75 bg-warning text-center p-3 border rounded mx-auto" name="juego">
+    <div [hidden]="ocultarVerificar" class="contenedor form-group">
+        <table id="tabla-tateti" class="mx-auto">
+            <tr>
+                <td (click)="asignarMov(7)" id="celda-1">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(7)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(7)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(8)" id="celda-2">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(8)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(8)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(9)" id="celda-3">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(9)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(9)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+            </tr>
+            <tr>
+                <td (click)="asignarMov(4)" id="celda-4">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(4)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(4)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(5)" id="celda-5">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(5)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(5)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(6)" id="celda-6">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(6)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(6)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+            </tr>
+            <tr>
+                <td (click)="asignarMov(1)" id="celda-7">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(1)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(1)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(2)" id="celda-8">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(2)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(2)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+                <td (click)="asignarMov(3)" id="celda-9">
+                    <img *ngIf="this.nuevoJuego.movsJugador.includes(3)" class="img-fluid" src="{{this.nuevoJuego.figuraJugador}}">
+                        <img *ngIf="this.nuevoJuego.movsAi.includes(3)" class="img-fluid" src="{{this.nuevoJuego.figuraAi}}">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="form-group">
+        <h2 [hidden]="!ocultarVerificar">
+            <button (click)="NuevoJuego()" class="btn btn-primary btn-lg btn-block" data-target="#modal-figura" data-toggle="modal">
+                Nuevo Juego
+            </button>
+        </h2>
+    </div>
+    <div class="form-group">
+        <h3 *ngIf="nuevoJuego.gano == true" class="text-uppercase text-success">
+            usted ha ganado
+        </h3>
+        <h3 *ngIf="nuevoJuego.gano == false && empate == false" class="text-uppercase text-danger">
+            usted ha perdido
+        </h3>
+        <h3 *ngIf="nuevoJuego.gano == false && empate == true" class="text-uppercase text-danger">
+            usted ha empatado
+        </h3>
+    </div>
+    <div class="modal fade" id="modal-figura" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-titulo">
+                        Elige una figura
+                    </h5>
+                    <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                        <span aria-hidden="true">
+                            ×
+                        </span>
+                    </button>
+                </div>
+                <div class="modal-body row">
+                    <a (click)="elegirFigura(1)" class="col"  data-dismiss="modal">
+                        <img class="tti-img img-fluid" src="./assets/imagenes/tateti-circulo.png">
+                    </a>
+                    <a (click)="elegirFigura(2)" class="col" data-dismiss="modal">
+                        <img class="tti-img img-fluid" src="./assets/imagenes/tateti-cruz.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

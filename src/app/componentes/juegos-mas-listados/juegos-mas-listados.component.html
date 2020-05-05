@@ -1,0 +1,9 @@
+<app-adivina-el-numero *ngIf='juego === "AdivinaMasListado"' ></app-adivina-el-numero> 
+<app-agilidad-aritmetica *ngIf='juego === "AgilidadMasListado"' ></app-agilidad-aritmetica> 
+<app-piedra-papel-o-tijera *ngIf='juego === "PptMasListado"' ></app-piedra-papel-o-tijera> 
+<app-anagrama *ngIf='juego === "AnagramaMasListado"' ></app-anagrama> 
+<app-tateti *ngIf='juego === "TatetiMasListado"' ></app-tateti> 
+<app-encontrar *ngIf='juego === "EncontrarMasListado"' ></app-encontrar> 
+
+<h1 class='text-uppercase mt-3'> listado </h1>
+<app-listado-de-resultados [listado]='listadoParaCompartir'> </app-listado-de-resultados>

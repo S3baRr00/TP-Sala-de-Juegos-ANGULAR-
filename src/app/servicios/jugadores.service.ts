@@ -1,45 +1,29 @@
 import { Injectable } from '@angular/core';
-import { ArchivosJugadoresService}from './archivos-jugadores.service'
+import { ArchivosJugadoresService } from './archivos-jugadores.service'
+import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
+import { Jugador } from "../clases/jugador";
+
 @Injectable()
+
 export class JugadoresService {
 
-  //peticion:any;
-  constructor( public miHttp: ArchivosJugadoresService ) {
-   // this.peticion = this.miHttp.traerJugadores();
-//    this.peticion = this.miHttp.httpGetO("https://restcountries.eu/rest/v2/all");
+  constructor(private firestore: AngularFirestore) { }
+
+  getJugadores() {
+    return this.firestore.collection("jugadores").snapshotChanges();
   }
 
+  createJugador(res: Jugador) {
+    return this.firestore.collection('jugadores').doc(res.uid).set(res);
+  }
 
-filtrado:any;
+  updateJugador(res: Jugador) {
+    this.firestore.collection("jugadores").doc(res.uid).update(res);
+  }
 
-  traertodos(ruta : string,filtro: string) 
-  {
-    return this.miHttp.traerJugadores(ruta).then(data=>{
-      console.info("jugadores service",data);
-
-      this.filtrado=data;
-
-     let  ganador: boolean;
-      if(filtro=="ganadores")
-      {
-        ganador= true;
-      }
-      else
-      {
-        ganador= false;
-      }
-
-      this.filtrado =this.filtrado.filter(
-        data => data.gano === ganador  || filtro=="todos" ); return this.filtrado}
-      )
-      .catch(errror=>{console.log("error")
-      
-
-
-    return this.filtrado;
-      
-
-    });
+  deleteJugador(resId: Jugador) {
+    this.firestore.collection("jugadores").doc(resId.uid).delete();
   }
 
 }
+

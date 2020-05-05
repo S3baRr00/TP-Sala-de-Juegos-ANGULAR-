@@ -5,7 +5,6 @@ export class JuegoAnagrama extends Juego {
   public anagrama: string;
   public palabra: string;
   public respuesta: string;
-  public gano: boolean;
 
   constructor(nombre?: string, gano?: boolean, jugador?: string) {
     super("Anagrama", gano, jugador);
@@ -22,7 +21,7 @@ export class JuegoAnagrama extends Juego {
       this.gano = true;
     }
      else {
-    this.gano = false;
+      this.gano = false;
     }
     return this.gano;
   }

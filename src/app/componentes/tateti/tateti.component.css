@@ -1,0 +1,39 @@
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr td {
+  width: 33.333%;
+  border: 6px solid #222;
+}
+
+tr td::after {
+  content: "";
+  display: block;
+  margin-top: 100%;
+}
+
+tr td:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+
+tr td:nth-of-type(2) {
+  border-top-color: transparent;
+}
+
+tr td:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+tr:nth-of-type(3) td {
+  border-bottom-color: transparent;
+}
+
+.tti-img{
+  height: 100px;
+  width: 100px;
+}

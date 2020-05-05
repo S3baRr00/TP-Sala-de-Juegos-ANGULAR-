@@ -1,18 +1,21 @@
+<div class="table-responsive-xl" >
 <table class="table table-striped table-hover table-dark text-center">
     <thead class="text-uppercase">
       <tr>
         <th>Juego</th>
         <th>Jugador</th>
         <th>Resultado</th>
+        <th>Detalles</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let juego of listado">
-        <td>{{juego.nombre}} </td>
-        <td>{{juego.jugador}} </td> 
-        <td *ngIf="juego.gano">Gano </td>   
-        <td *ngIf="!juego.gano">Perdio</td>     
+      <tr *ngFor="let resultado of listado">
+        <td>{{resultado.juego}} </td>
+        <td>{{resultado.usuario}} </td> 
+        <td>{{resultado.resultado}} </td>   
+        <td>{{resultado.detalles}}</td>     
       </tr>
      
     </tbody>
   </table>
+</div>

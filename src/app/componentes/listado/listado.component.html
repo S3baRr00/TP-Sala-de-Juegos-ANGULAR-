@@ -1,28 +1,42 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a routerLink="/Principal" class="navbar-brand">Sala De Juegos</a>
-    <button
-      type="button"
-      class="btn navbar-toggler"
-      data-toggle="collapse"
-      data-target="#myNavbar"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" (click)="llamaService()">Servicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="llamaServicePromesa()">Serv Promesa</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="llamaServicePromesa()">Serv observable</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" routerLink="/Principal">
+            Sala De Juegos
+        </a>
+        <button class="btn navbar-toggler" data-target="#myNavbar" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon">
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdwn-juegos" role="button">
+                        Resultado
+                    </a>
+                    <div class="dropdown-menu">
+                        <a (click)="filtroResultado='Victoria'" class="dropdown-item">
+                            Victoria
+                        </a>
+                        <a (click)="filtroResultado='Derrota'" class="dropdown-item">
+                            Derrota
+                        </a>
+                        <a (click)="filtroResultado='Todas'" class="dropdown-item">
+                            Todas
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item col">
+                    <input [(ngModel)]="filtroJuego" class="form-control mr-sm-2" placeholder="nombre de juego" type="search">
+                </li>
+                <li class="nav-item col">
+                    <input [(ngModel)]="filtroJugador" class="form-control mr-sm-2" placeholder="email de jugador" type="search">
+                </li>
+                <li class="nav-item col">
+                  <button class="btn bg-success" (click)="filtrar()">Filtrar</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
-
-<app-listado-de-resultados [listado]="listadoParaCompartir"></app-listado-de-resultados>
+<app-listado-de-resultados [listado]="listadoParaCompartir">
+</app-listado-de-resultados>

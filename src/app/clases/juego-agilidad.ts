@@ -17,12 +17,10 @@ export class JuegoAgilidad extends Juego {
   {
     if (this.respuesta == this.respuestaIngresada) {
       this.gano = true;
+    }else {
+      this.gano = false;
     }
-    if (this.gano) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.gano;
   }
 
   public generarOperacion() {
