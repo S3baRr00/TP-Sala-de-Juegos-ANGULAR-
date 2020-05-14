@@ -1,6 +1,6 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a routerLink="/Principal" class="navbar-brand">Ir a inicio</a>
+    <a routerLink="/Principal" class="navbar-brand">Sala De Juegos</a>
     <button
       type="button"
       class="btn navbar-toggler"
@@ -39,7 +39,7 @@
       <ng-container *ngIf='jugador != null'>
       <td>{{ jugador.usuario }}</td>
       <td>{{ jugador.cuit }}</td>
-      <td>{{ jugador.sexo | sexo | uppercase }}</td>
+      <td>{{ jugador.sexo | uppercase }}</td>
       <td>{{ jugador.gano }}</td>
     </ng-container>
     </tr>

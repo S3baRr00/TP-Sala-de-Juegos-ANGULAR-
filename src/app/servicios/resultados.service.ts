@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
 import { Resultados } from "../clases/resultados.model";
+import { JugadoresService } from "./jugadores.service"
+import { Jugador } from "../clases/jugador";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
@@ -12,7 +14,7 @@ export class ResultadosService {
   private resultadosCollection: AngularFirestoreCollection<Resultados>;
   resultados: Observable<Resultados[]>;
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore, private jugadorSrv: JugadoresService) {
     this.resultadosCollection = firestore.collection<Resultados>('resultados');
 
     this.resultados = this.resultadosCollection.snapshotChanges().pipe(
@@ -29,7 +31,9 @@ export class ResultadosService {
   }
 
   createResultado(res: Resultados) {
-    return this.firestore.collection('resultados').add(res);
+    return this.firestore.collection('resultados').add(res).then( ref =>{
+        this.jugadorSrv.actualizarGano(res.usuario);
+    });
   }
 
   updateResultado(res: Resultados) {

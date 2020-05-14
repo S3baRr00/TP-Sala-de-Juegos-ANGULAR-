@@ -13,7 +13,7 @@ export class AuthService {
   public sub: any;
   public jugador: Jugador;
 
-  constructor(public afAuth: AngularFireAuth,private jugSrv: JugadoresService ) {
+  constructor(public afAuth: AngularFireAuth, private jugSrv: JugadoresService) {
     this.sub = this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
@@ -24,39 +24,30 @@ export class AuthService {
     });
   }
 
-  async login(email: string, password: string) {
-    try {
-      var result = await this.afAuth.signInWithEmailAndPassword(email, password);
-    } catch (e) {
-      console.log('error de login:' + e.message);
-    }
+  login(email: string, password: string) {
+    return this.afAuth.signInWithEmailAndPassword(email, password).then(user =>{
+      localStorage.setItem("user", JSON.stringify(user.user));
+    });
   }
 
-  async register(email: string, password: string, data: string[]) {
-    try {
-      var result = await this.afAuth.createUserWithEmailAndPassword(email, password).then(user => {
-        this.jugador= {
-          uid: user.user.uid,
-          usuario: data['usuario'],
-          cuit: data['cuit'],
-          sexo: data['sexo'],
-          gano: data['gano']
-        }
-        this.jugSrv.createJugador(this.jugador);
-      });
-    } catch (e) {
-      console.log("error al registrarse" + e.message);
-    }
+  register(email: string, password: string, data: string[]) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then(user => {
+      this.jugador = {
+        uid: user.user.uid,
+        usuario: data['usuario'],
+        cuit: data['cuit'],
+        sexo: data['sexo'],
+        gano: data['gano']
+      }
+      this.jugSrv.createJugador(this.jugador);
+      localStorage.setItem("user", JSON.stringify(user.user));
+    });
   }
 
   async logout() {
-    try {
-      await this.afAuth.signOut();
-      localStorage.removeItem("user");
-      this.sub.unsubscribe();
-    } catch (e) {
-      console.log("error al salir" + e.message);
-    }
+    await this.afAuth.signOut();
+    localStorage.removeItem("user");
+    this.sub.unsubscribe();
   }
 
   public get isLoggedIn(): boolean {

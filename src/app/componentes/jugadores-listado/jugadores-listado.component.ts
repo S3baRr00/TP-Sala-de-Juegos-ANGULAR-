@@ -15,10 +15,8 @@ export class JugadoresListadoComponent implements OnInit {
   listadoResultados: Array<any>
   flag: number;
   subJug;
-  subRes;
 
   constructor(private JugadoresSrv: JugadoresService, private resServ: ResultadosService) {
-    this.flag = 0;
     this.filtrar('Todas');
   }
 
@@ -51,41 +49,8 @@ export class JugadoresListadoComponent implements OnInit {
           return { ...data };
         });
       }
-      if (this.flag == 0) {
-        this.actualizarJugadores();
-        this.flag = 1;
-      }
       console.log(this.listado);
     });
-  }
-
-  public actualizarJugadores() {
-    this.subRes = this.resServ.getResultados().subscribe(data => {
-      this.listadoResultados = data.map(e => {
-        const data = e.payload.doc.data() as Resultados;
-        data.id = e.payload.doc.id;
-        return { ...data };
-      });
-      this.listado.forEach(jugador => {
-        let total = this.listadoResultados.filter(resultado => resultado.usuario === jugador.usuario).length;
-        let cumple = this.listadoResultados.filter(resultado => {
-          if (resultado.usuario === jugador.usuario && resultado.resultado === 'Victoria') {
-            return true;
-          } else {
-            return false;
-          }
-        }).length;
-        let porcentaje = cumple / total;
-        if (porcentaje >= 0.5) {
-          jugador.gano = 'Ganador';
-        }
-        else {
-          jugador.gano = 'Perdedor';
-        }
-        this.JugadoresSrv.updateJugador(jugador);
-      });
-    });
-    this.subRes.unsubscribe();
   }
 
   ngOnDestroy() {

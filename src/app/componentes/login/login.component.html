@@ -40,6 +40,9 @@
         >Recordar mis datos</label
       >
     </div>
+    <div *ngIf='this.error' class="form-group text-center">
+      <label class="text-danger">{{this.mensajeError}}</label>
+    </div>
     <div class="mb-2">
       <button type="submit" class="btn btn-primary btn-block" (click)=Entrar() >Ingresar</button>
     </div>

@@ -24,15 +24,16 @@ import { AnagramaComponent } from "../componentes/anagrama/anagrama.component";
 import { TatetiComponent } from "../componentes/tateti/tateti.component";
 import { EncontrarComponent } from '../componentes/encontrar/encontrar.component';
 import { JuegosMasListadosComponent } from '../componentes/juegos-mas-listados/juegos-mas-listados.component';
+import { UsuarioActivoGuard } from '../guards/usuario-activo.guard';
 
 
 // declaro donde quiero que se dirija
 const MiRuteo = [
   { path: "", component: PrincipalComponent },
-  { path: "Login", component: LoginComponent },
+  { path: "Login", component: LoginComponent, canActivate: [UsuarioActivoGuard] },
   { path: "Jugadores", component: JugadoresListadoComponent },
   { path: "QuienSoy", component: QuienSoyComponent },
-  { path: "Registro", component: RegistroComponent },
+  { path: "Registro", component: RegistroComponent, canActivate: [UsuarioActivoGuard] },
   { path: "Principal", component: PrincipalComponent },
   { path: "Listado", component: ListadoComponent },
   { path: "Paises", component: ListadoDePaisesComponent },
