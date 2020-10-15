@@ -3,6 +3,7 @@ import { Tateti } from "../../clases/juego-tateti";
 import { ResultadosService } from '../../servicios/resultados.service';
 import { AuthService } from '../../servicios/auth.service'
 import { Resultados } from "../../clases/resultados.model";
+import { ImagenesService } from '../../servicios/imagenes.service';
 
 @Component({
   selector: "app-tateti",
@@ -18,13 +19,19 @@ export class TatetiComponent implements OnInit, OnDestroy {
   sub;
   detalle: string;
   resultado: string;
+  public imgCirculo:string;
+  public imgCruz:string;
 
-  constructor(private resSrv: ResultadosService, private user: AuthService) {
+  constructor(private resSrv: ResultadosService, private user: AuthService, public imagenes: ImagenesService) {
     this.nuevoJuego = new Tateti();
     this.obtenerLista();
   }
 
   ngOnInit(): void {
+    this.imagenes.traerTateti().then(snap =>{
+      this.imgCirculo = snap.data().imagenes.find(x => x.nombre === 'tateti-circulo.png').url;
+      this.imgCruz = snap.data().imagenes.find(x => x.nombre === 'tateti-cruz.png').url;
+    });
     this.ocultarVerificar = true;
     this.ocultarModal = true;
   }
@@ -43,11 +50,11 @@ export class TatetiComponent implements OnInit, OnDestroy {
 
   public elegirFigura(valor: Number) {
     if (valor == 1) {
-      this.nuevoJuego.figuraJugador = './assets/imagenes/tateti-circulo.png';
-      this.nuevoJuego.figuraAi = './assets/imagenes/tateti-cruz.png';
+      this.nuevoJuego.figuraJugador = this.imgCirculo;
+      this.nuevoJuego.figuraAi = this.imgCruz;
     } else {
-      this.nuevoJuego.figuraJugador = './assets/imagenes/tateti-cruz.png';
-      this.nuevoJuego.figuraAi = './assets/imagenes/tateti-circulo.png';
+      this.nuevoJuego.figuraJugador = this.imgCruz;
+      this.nuevoJuego.figuraAi = this.imgCirculo;
     }
     this.ocultarModal = true;
     this.ocultarVerificar = false;
@@ -56,16 +63,16 @@ export class TatetiComponent implements OnInit, OnDestroy {
 
   public asignarMov(num: number) {
     this.nuevoJuego.asignarCelda(this.nuevoJuego.movsJugador, num);
-    if(!this.verificar()){
-    let algo = setTimeout(() => {
-      this.nuevoJuego.movAi();
-      this.verificar();
-    }, 1000);
-  }
+    if (!this.verificar()) {
+      let algo = setTimeout(() => {
+        this.nuevoJuego.movAi();
+        this.verificar();
+      }, 1000);
+    }
   }
 
-  public verificar():boolean {
-    if(this.nuevoJuego.ganoJugador()) {
+  public verificar(): boolean {
+    if (this.nuevoJuego.ganoJugador()) {
       this.ocultarVerificar = true;
       this.detalle = 'gano contra la Ai';
       this.resultado = 'Victoria';
@@ -74,7 +81,7 @@ export class TatetiComponent implements OnInit, OnDestroy {
       }
       return true;
     }
-    if(this.nuevoJuego.ganoAi()) {
+    if (this.nuevoJuego.ganoAi()) {
       this.ocultarVerificar = true;
       this.empate = false;
       this.detalle = 'perdio contra la Ai';
@@ -84,7 +91,7 @@ export class TatetiComponent implements OnInit, OnDestroy {
       }
       return true;
     }
-    if(this.nuevoJuego.empate()) {
+    if (this.nuevoJuego.empate()) {
       this.empate = true;
       this.ocultarVerificar = true;
       this.detalle = 'empato con la Ai';
@@ -99,37 +106,39 @@ export class TatetiComponent implements OnInit, OnDestroy {
 
 
   obtenerLista() {
-     this.sub = this.resSrv.getResultados().subscribe(data => {
-        this.listadoParaCompartir = data.map(e => {
-           const data = e.payload.doc.data() as Resultados;
-           data.id = e.payload.doc.id;
-           return { ...data };
-        });
-     });
+    this.sub = this.resSrv.getResultados().subscribe(data => {
+      this.listadoParaCompartir = data.map(e => {
+        const data = e.payload.doc.data() as Resultados;
+        data.id = e.payload.doc.id;
+        return { ...data };
+      });
+    });
   }
 
   generarResultado() {
-     let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
+    if (this.user.isLoggedIn) {
+      let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
         find(resultados => resultados.usuario === this.user.user.email);
-     if (existe != undefined) {
+      if (existe != undefined) {
         existe.resultado = this.resultado;
         existe.detalles = this.detalle;
         this.resSrv.updateResultado(existe);
         console.log(existe);
-     } else {
+      } else {
         let resultados: Resultados = {
-           'id': '',
-           'usuario': this.user.user.email,
-           'juego': this.nuevoJuego.nombre,
-           'resultado': this.resultado,
-           'detalles': this.detalle
+          'id': '',
+          'usuario': this.user.user.email,
+          'juego': this.nuevoJuego.nombre,
+          'resultado': this.resultado,
+          'detalles': this.detalle
         }
         this.resSrv.createResultado(resultados);
         console.log(resultados);
-     }
+      }
+    }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub.unsubscribe();
   }
 }

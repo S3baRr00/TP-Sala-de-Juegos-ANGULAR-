@@ -2,25 +2,25 @@
   <h1>{{ nuevoJuego.nombre }}</h1>
 </div>
 <form
-  class="form w-75 bg-warning text-center p-3 border rounded mx-auto"
+  class="form w-75 bg-success text-center p-3 border rounded mx-auto"
   name="juego"
 >
   <div class="form-group p-3 row" [hidden]="ocultarVerificar">
     <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('0')">
       <img
-        src="./assets/imagenes/ppt-piedra.png"
+        [src]="imgPptPiedra"
         class="img-fluid imagen-ppt"
         alt="piedra"
     /></a>
     <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('1')">
       <img
-        src="./assets/imagenes/ppt-papel.png"
+        [src]="imgPptPapel"
         class="img-fluid imagen-ppt"
         alt="papel"
     /></a>
     <a class="btn btn-outline-success m-2 col-md" (click)="obtenerValor('2')">
       <img
-        src="./assets/imagenes/ppt-tijera.png"
+        [src]="imgPptTijera"
         class="img-fluid imagen-ppt"
         alt="tijera"
     /></a>
@@ -32,7 +32,7 @@
       </button>
     </h2>
     <h2 [hidden]="ocultarVerificar && nuevoJuego.figuraJugador == null">
-      <button (click)="verificar()" class="btn btn-success btn-lg btn-block">
+      <button (click)="verificar()" class="btn btn-light btn-lg btn-block">
         Verificar
       </button>
     </h2>

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ArchivosJugadoresService } from './archivos-jugadores.service'
 import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
 import * as firebase from "firebase/app";
 import { Jugador } from "../clases/jugador";

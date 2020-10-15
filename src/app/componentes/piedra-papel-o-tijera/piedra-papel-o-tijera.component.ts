@@ -3,6 +3,7 @@ import { JuegoPiedraPapelTijera } from "../../clases/juego-piedra-papel-tijera";
 import { ResultadosService } from '../../servicios/resultados.service';
 import { AuthService } from '../../servicios/auth.service'
 import { Resultados } from "../../clases/resultados.model";
+import { ImagenesService } from '../../servicios/imagenes.service';
 
 @Component({
   selector: "app-piedra-papel-o-tijera",
@@ -17,8 +18,11 @@ export class PiedraPapelOTijeraComponent implements OnInit, OnDestroy {
   listadoParaCompartir: Array<any>;
   detalle: string;
   resultado: string;
+  public imgPptPiedra: string;
+  public imgPptPapel: string;
+  public imgPptTijera: string;
 
-  constructor(private resSrv: ResultadosService, private user: AuthService) {
+  constructor(private resSrv: ResultadosService, private user: AuthService, public imagenes: ImagenesService) {
     this.ocultarVerificar = true;
     this.nuevoJuego = new JuegoPiedraPapelTijera();
     console.info("Inicio PPT");
@@ -30,7 +34,13 @@ export class PiedraPapelOTijeraComponent implements OnInit, OnDestroy {
     console.log(valor);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.imagenes.traerPpt().then(snap =>{
+      this.imgPptPiedra = snap.data().imagenes.find(x => x.nombre === 'ppt-piedra.png').url;
+      this.imgPptPapel = snap.data().imagenes.find(x => x.nombre === 'ppt-papel.png').url;
+      this.imgPptTijera = snap.data().imagenes.find(x => x.nombre === 'ppt-tijera.png').url;
+    });
+  }
 
   NuevoJuego() {
     this.ocultarVerificar = false;
@@ -78,26 +88,28 @@ export class PiedraPapelOTijeraComponent implements OnInit, OnDestroy {
 
 
   generarResultado() {
-    let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
-      find(resultados => resultados.usuario === this.user.user.email);
-    console.log(existe);
-    if (existe != undefined) {
-      existe.resultado = this.resultado;
-      existe.detalles = this.detalle;
-      this.resSrv.updateResultado(existe);
-    } else {
-      let resultados: Resultados = {
-        'id': '',
-        'usuario': this.user.user.email,
-        'juego': this.nuevoJuego.nombre,
-        'resultado': this.resultado,
-        'detalles': this.detalle
+    if (this.user.isLoggedIn) {
+      let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
+        find(resultados => resultados.usuario === this.user.user.email);
+      console.log(existe);
+      if (existe != undefined) {
+        existe.resultado = this.resultado;
+        existe.detalles = this.detalle;
+        this.resSrv.updateResultado(existe);
+      } else {
+        let resultados: Resultados = {
+          'id': '',
+          'usuario': this.user.user.email,
+          'juego': this.nuevoJuego.nombre,
+          'resultado': this.resultado,
+          'detalles': this.detalle
+        }
+        this.resSrv.createResultado(resultados);
       }
-      this.resSrv.createResultado(resultados);
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub.unsubscribe();
   }
 

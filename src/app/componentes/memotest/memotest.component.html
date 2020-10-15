@@ -1,0 +1,44 @@
+<div class="text-center text-uppercase">
+  <h1>
+    {{ nuevoJuego.nombre }}
+  </h1>
+</div>
+<form class="form w-75 bg-info text-center p-3 border rounded mx-auto" name="juego">
+  <div *ngIf=!ocultarVerificar>
+    <div class="text-danger text-right">
+      n° Errores: {{errores}}
+    </div>
+    <div class="form-group row">  
+    <ng-container *ngFor="let figura of this.nuevoJuego.listaFiguras; let i = index">
+      <ng-container *ngIf='(i+1) % 8 == 0; else mismaCol'>
+        <div class="col" (click)="voltearCarta(figura.nombre)">
+          <img *ngIf='!this.nuevoJuego.listaFiguras[i].volteada' class="cartita" src={{this.nuevoJuego.figuraSecreta.img}}>
+          <img *ngIf='this.nuevoJuego.listaFiguras[i].volteada' class="cartita" src={{figura.img}}>
+        </div>
+        <div class="w-100"></div>
+      </ng-container>
+      <ng-template #mismaCol>
+        <div class="col" (click)="voltearCarta(figura.nombre)">
+          <img *ngIf='!this.nuevoJuego.listaFiguras[i].volteada' class="cartita" src={{this.nuevoJuego.figuraSecreta.img}}>
+          <img *ngIf='this.nuevoJuego.listaFiguras[i].volteada' class="cartita" src={{figura.img}}>
+        </div>
+      </ng-template>
+    </ng-container>
+    </div>
+  </div>
+  <div *ngIf="ocultarVerificar === true" class="form-group">
+    <h2>
+      <button (click)="NuevoJuego()" class="btn btn-primary btn-lg btn-block">
+        Nuevo Juego
+      </button>
+    </h2>
+  </div>
+  <div class="form-group">
+    <h3 *ngIf="nuevoJuego.gano == true" class="text-uppercase text-success">
+      ganaste! encontraste todos los pares
+    </h3>
+    <h3 *ngIf="nuevoJuego.gano == false" class="text-uppercase text-danger">
+      perdiste! encontraste una pica
+    </h3>
+  </div>
+</form>

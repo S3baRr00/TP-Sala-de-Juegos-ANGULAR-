@@ -1,81 +1,95 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" routerLink="/Principal" >
-            Sala De Juegos
-        </a>
-        <button class="btn navbar-toggler" data-target="#myNavbar" data-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/Principal">
+      Sala De Juegos
+    </a>
+    <button class="btn navbar-toggler" data-target="#myNavbar" data-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon">
+      </span>
+    </button>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul *ngIf='!authService.isLoggedIn' class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Registro"> Registrarse </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Login"> Ingresar </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/Juegos">
+            Menú de Juegos
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdwn-juegos" role="button">
+            Juegos
+          </a>
+          <div aria-labelledby="dropdwn-juegos" class="dropdown-menu">
+            <a (click)="Juego('Adivina')" class="dropdown-item">
+              Adivina
+            </a>
+            <a (click)="Juego('Agilidad')" class="dropdown-item">
+              Agilidad
+            </a>
+            <a (click)="Juego('Ppt')" class="dropdown-item">
+              PPT
+            </a>
+            <a (click)="Juego('Anagrama')" class="dropdown-item">
+              Anagrama
+            </a>
+            <a (click)="Juego('Tateti')" class="dropdown-item">
+              Tateti
+            </a>
+            <a (click)="Juego('Encontrar')" class="dropdown-item">
+              Encontrar
+            </a>
+            <a (click)="Juego('Memotest')" class="dropdown-item">
+              Memotest
+            </a>
+            <div class="dropdown-divider">
+            </div>
+            <a (click)="Juego('AdivinaMasListado')" class="dropdown-item">
+              Adivina+listado
+            </a>
+            <a (click)="Juego('AgilidadMasListado')" class="dropdown-item">
+              Agilidad+listado
+            </a>
+            <a (click)="Juego('PptMasListado')" class="dropdown-item">
+              Ppt+listado
+            </a>
+            <a (click)="Juego('AnagramaMasListado')" class="dropdown-item">
+              Anagrama+listado
+            </a>
+            <a (click)="Juego('TatetiMasListado')" class="dropdown-item">
+              Tateti+listado
+            </a>
+            <a (click)="Juego('EncontrarMasListado')" class="dropdown-item">
+              Encontrar+listado
+            </a>
+            <a (click)="Juego('MemotestMasListado')" class="dropdown-item">
+              Memotest+listado
+            </a>
+          </div>
+        </li>
+      </ul>
+      <ul *ngIf='authService.isLoggedIn' class="nav navbar-nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/QuienSoy">
+            <span class="fas fa-user-cog">
             </span>
-        </button>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink="/Juegos">
-                        Menú de Juegos
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdwn-juegos" role="button">
-                        Juegos
-                    </a>
-                    <div aria-labelledby="dropdwn-juegos" class="dropdown-menu">
-                        <a (click)="Juego('Adivina')" class="dropdown-item">
-                            Adivina
-                        </a>
-                        <a (click)="Juego('Agilidad')" class="dropdown-item">
-                            Agilidad
-                        </a>
-                        <a (click)="Juego('Ppt')" class="dropdown-item">
-                            PPT
-                        </a>
-                        <a (click)="Juego('Anagrama')" class="dropdown-item">
-                            Anagrama
-                        </a>
-                        <a (click)="Juego('Tateti')" class="dropdown-item">
-                            Tateti
-                        </a>
-                        <a (click)="Juego('Encontrar')" class="dropdown-item">
-                            Encontrar
-                        </a>
-                        <div class="dropdown-divider">
-                        </div>
-                        <a (click)="Juego('AdivinaMasListado')" class="dropdown-item">
-                            Adivina+listado
-                        </a>
-                        <a (click)="Juego('AgilidadMasListado')" class="dropdown-item">
-                            Agilidad+listado
-                        </a>
-                        <a (click)="Juego('PptMasListado')" class="dropdown-item">
-                            Ppt+listado
-                        </a>
-                        <a (click)="Juego('AnagramaMasListado')" class="dropdown-item">
-                            Anagrama+listado
-                        </a>
-                        <a (click)="Juego('TatetiMasListado')" class="dropdown-item">
-                            Tateti+listado
-                        </a>
-                        <a (click)="Juego('EncontrarMasListado')" class="dropdown-item">
-                            Encontrar+listado
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/QuienSoy" >
-                        <span class="fas fa-user-cog">
-                        </span>
-                        Mis Datos
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a (click)="Salir()" class="nav-link">
-                        <span class="fas fa-sign-out-alt">
-                        </span>
-                        Salir
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            Mis Datos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a (click)="Salir()" class="nav-link">
+            <span class="fas fa-sign-out-alt">
+            </span>
+            Salir
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>

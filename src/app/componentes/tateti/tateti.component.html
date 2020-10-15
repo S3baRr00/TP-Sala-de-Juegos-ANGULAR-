@@ -3,7 +3,7 @@
         {{ nuevoJuego.nombre }}
     </h1>
 </div>
-<form class="form w-75 bg-warning text-center p-3 border rounded mx-auto" name="juego">
+<form class="form w-75 bg-light text-center p-3 border rounded mx-auto" name="juego">
     <div [hidden]="ocultarVerificar" class="contenedor form-group">
         <table id="tabla-tateti" class="mx-auto">
             <tr>
@@ -83,10 +83,10 @@
                 </div>
                 <div class="modal-body row">
                     <a (click)="elegirFigura(1)" class="col"  data-dismiss="modal">
-                        <img class="tti-img img-fluid" src="./assets/imagenes/tateti-circulo.png">
+                        <img class="tti-img img-fluid" [src]="imgCirculo">
                     </a>
                     <a (click)="elegirFigura(2)" class="col" data-dismiss="modal">
-                        <img class="tti-img img-fluid" src="./assets/imagenes/tateti-cruz.png">
+                        <img class="tti-img img-fluid" [src]="imgCruz">
                     </a>
                 </div>
             </div>

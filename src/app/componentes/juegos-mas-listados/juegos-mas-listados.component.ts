@@ -47,6 +47,9 @@ export class JuegosMasListadosComponent implements OnInit, OnDestroy {
 			case "EncontrarMasListado":
 				filtro = 'Encontrar el Diamante';
 				break;
+				case "MemotestMasListado":
+				filtro = 'Memotest';
+				break;
 		}
 		this.listadoParaCompartir = this.listadoParaCompartir.filter(resultados => resultados.juego === filtro);
 	}

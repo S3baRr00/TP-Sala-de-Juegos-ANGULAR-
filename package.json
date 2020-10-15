@@ -32,9 +32,10 @@
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
-    "firebase": "^7.14.2",
+    "firebase": "^7.23.0",
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^5.6.1",
+    "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "rxjs": "^6.5.5",
     "tslib": "^1.11.1",
@@ -42,7 +43,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.1",
+    "@angular-devkit/build-angular": "~0.901.3",
     "@angular/cli": "^9.1.1",
     "@angular/compiler-cli": "^9.1.1",
     "@angular/language-service": "^9.1.1",
@@ -59,13 +60,13 @@
     "karma-coverage-istanbul-reporter": "^2.1.1",
     "karma-jasmine": "~3.1.1",
     "karma-jasmine-html-reporter": "^1.5.3",
-    "protractor": "~5.4.3",
+    "protractor": "^7.0.0",
     "ts-node": "~8.8.2",
     "tslint": "~6.1.1",
     "typescript": "3.8.3"
   },
   "engines": {
-    "node": "10.16.3",
-    "npm": "6.14.4"
+    "node": "14.13.0",
+    "npm": "6.14.8"
   }
 }

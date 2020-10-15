@@ -107,7 +107,7 @@ export class AdivinaElNumeroComponent implements OnInit, OnDestroy {
 
 
   obtenerLista() {
-   this.sub = this.resSrv.getResultados().subscribe(data => {
+    this.sub = this.resSrv.getResultados().subscribe(data => {
       this.listadoParaCompartir = data.map(e => {
         const data = e.payload.doc.data() as Resultados;
         const id = e.payload.doc.id;
@@ -119,25 +119,27 @@ export class AdivinaElNumeroComponent implements OnInit, OnDestroy {
 
 
   generarResultado() {
-    let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
-      find(resultados => resultados.usuario === this.user.user.email);
-    if (existe != undefined) {
-      existe.resultado = this.resultado;
-      existe.detalles = this.detalle;
-      this.resSrv.updateResultado(existe);
-    } else {
-      let resultados: Resultados = {
-        'id': '',
-        'usuario': this.user.user.email,
-        'juego': this.nuevoJuego.nombre,
-        'resultado': this.resultado,
-        'detalles': 'le tomo ' + this.contador + ' intentos'
+    if (this.user.isLoggedIn) {
+      let existe = this.listadoParaCompartir.filter(resultados => resultados.juego === this.nuevoJuego.nombre).
+        find(resultados => resultados.usuario === this.user.user.email);
+      if (existe != undefined) {
+        existe.resultado = this.resultado;
+        existe.detalles = this.detalle;
+        this.resSrv.updateResultado(existe);
+      } else {
+        let resultados: Resultados = {
+          'id': '',
+          'usuario': this.user.user.email,
+          'juego': this.nuevoJuego.nombre,
+          'resultado': this.resultado,
+          'detalles': 'le tomo ' + this.contador + ' intentos'
+        }
+        this.resSrv.createResultado(resultados);
       }
-      this.resSrv.createResultado(resultados);
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.sub.unsubscribe();
   }
 }

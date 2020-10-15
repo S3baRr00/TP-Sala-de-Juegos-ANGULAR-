@@ -29,7 +29,7 @@
           <div class="card bg-warning text-white text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/cerebro.png"
+              [src]="imgCerebro"
               alt="Avatar"
             />
             <div class="card-body">
@@ -66,7 +66,7 @@
           <div class="card bg-success text-white text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/ppt.png"
+              [src]="imgPpt"
               alt="Avatar"
             />
             <div class="card-body">
@@ -102,7 +102,7 @@
           <div class="card bg-danger text-white text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/adivina.png"
+              [src]="imgAdivina"
               alt="Avatar"
             />
             <div class="card-body">
@@ -137,7 +137,7 @@
           <div class="card bg-secondary text-white text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/anagrama.png"
+              [src]="imgAnagrama"
               alt="Avatar"
             />
             <div class="card-body">
@@ -172,7 +172,7 @@
           <div class="card bg-light text-dark text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/tateti.png"
+              [src]="imgTateti"
               alt="Avatar"
             />
             <div class="card-body">
@@ -204,10 +204,45 @@
           </div>
         </div>
         <div class="carousel-item">
+          <div class="card bg-dark text-white text-center">
+            <img
+              class="card-img-top p-2"
+              [src]="imgMemotest"
+              alt="Avatar"
+            />
+            <div class="card-body">
+              <h1 class="card-title">Memotest</h1>
+              <p class="card-text">Encuentra todos los pares en el menor tiempo posible</p>
+              <p class="card-text">UTN FRA</p>
+              <div class="col">
+                <a href="#"><i class="fa fa-dribbble"></i></a>
+              </div>
+              <div class="col">
+                <a href="#"><i class="fa fa-twitter"></i></a>
+              </div>
+              <div class="col">
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+              </div>
+              <div class="col">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                (click)="Juego('Memotest')"
+              >
+                Jugar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
           <div class="card bg-info text-white text-center">
             <img
               class="card-img-top p-2"
-              src="./assets/imagenes/encontrar cartas/honor_diamond.png"
+              [src]="imgHonor_diamond"
               alt="Avatar"
             />
             <div class="card-body">

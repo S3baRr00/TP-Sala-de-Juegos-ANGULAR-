@@ -1,46 +1,47 @@
 import { Juego } from "./juego";
 import { Cartas } from "./encuentra-cartas";
-import { cartas } from "../../assets/mock/mock-encontrar";
 
 export class Encontrar extends Juego {
   public listaLibres: Cartas[];
   public aux: Cartas[];
   public listaDescubiertos: Cartas[];
   public cartaSecreta: Cartas;
-  public scopeCarta:Cartas;
+  public scopeCarta: Cartas;
 
-  constructor(nombre?: string, gano?: boolean, jugador?: string) {
+  constructor(cartas: Array<Cartas>, nombre?: string, gano?: boolean, jugador?: string) {
     super("Encontrar el Diamante", gano, jugador);
-    this.listaLibres= [];
+    this.listaLibres = [];
     this.listaDescubiertos = [];
     this.aux = [];
     this.gano = null;
     this.scopeCarta = null;
-    this.inicializar();
+    this.inicializar(cartas);
   }
 
-  public inicializar() {
-    this.listaLibres= [];
+  public inicializar(cartas: Array<Cartas>) {
+    this.listaLibres = [];
     this.listaDescubiertos = [];
     this.aux = [];
     this.gano = null;
     this.scopeCarta = null;
     this.listaLibres = [...cartas];
+    let x = this.listaLibres.findIndex(y => y.nombre === 'gray_back');
+    let y = this.listaLibres.splice(x, 1)[0]
+    this.cartaSecreta = y;
     this.listaLibres = this.shuffle(this.listaLibres);
     this.aux = [...this.listaLibres];
-    this.cartaSecreta = { nombre: "back", img: "./assets/imagenes/encontrar cartas/gray_back.png", valor: 0 }
   }
 
   public voltear(nombre: string) {
     let indiceCarta = this.listaLibres.findIndex(carta => carta.nombre === nombre);
     if (indiceCarta != -1) {
       let carta = this.listaLibres.splice(indiceCarta, 1)[0];
-      this.scopeCarta = carta;     
+      this.scopeCarta = carta;
       this.listaDescubiertos.push(carta);
     }
   }
 
-  public encontroPicas(){
+  public encontroPicas() {
     let hayPicas = this.listaDescubiertos.find(carta => carta.nombre.includes('S'));
     if (hayPicas) {
       this.gano = false;
@@ -49,16 +50,16 @@ export class Encontrar extends Juego {
     return false;
   }
 
-  public encontroAs(){
+  public encontroAs() {
     let asDiamanteIndice = this.listaDescubiertos.find(carta => carta.nombre === 'AD');
     if (asDiamanteIndice) {
       this.gano = true;
       return true;
-    } 
+    }
     return false;
   }
 
-  public verificar(){
+  public verificar() {
     return true;
   }
 

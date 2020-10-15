@@ -10,7 +10,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { MiHttpService } from "./servicios/mi-http/mi-http.service";
 import { PaisesService } from "./servicios/paises.service";
 import { JugadoresService } from "./servicios/jugadores.service";
-import { ArchivosJugadoresService } from "./servicios/archivos-jugadores.service";
+import { ImagenesService } from "./servicios/imagenes.service";
 import { ErrorComponent } from "./componentes/error/error.component";
 import { PrincipalComponent } from "./componentes/principal/principal.component";
 import { AgilidadAritmeticaComponent } from "./componentes/agilidad-aritmetica/agilidad-aritmetica.component";
@@ -34,6 +34,7 @@ import { SexoPipe } from "./pipes/sexo.pipe";
 import { PiedraPapelOTijeraComponent } from "./componentes/piedra-papel-o-tijera/piedra-papel-o-tijera.component";
 import { EncontrarComponent } from "./componentes/encontrar/encontrar.component";
 import { TatetiComponent } from "./componentes/tateti/tateti.component";
+import { MemotestComponent } from './componentes/memotest/memotest.component';
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AngularFireModule } from "@angular/fire";
@@ -68,7 +69,8 @@ import { JuegosMasListadosComponent } from './componentes/juegos-mas-listados/ju
         PiedraPapelOTijeraComponent,
         EncontrarComponent,
         TatetiComponent,
-        JuegosMasListadosComponent
+        JuegosMasListadosComponent,
+        MemotestComponent
     ],
     imports: [
         BrowserModule,
@@ -87,7 +89,7 @@ import { JuegosMasListadosComponent } from './componentes/juegos-mas-listados/ju
         JuegoServiceService,
         MiHttpService,
         PaisesService,
-        ArchivosJugadoresService,
+        ImagenesService,
         JugadoresService
     ],
     bootstrap: [AppComponent]

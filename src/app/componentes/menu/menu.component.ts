@@ -14,11 +14,14 @@ export class MenuComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+  }
 
   public Salir() {
-    this.authService.logout();
-    this.router.navigate(["Login"]);
+    this.authService.logout().then(() => {
+      this.router.navigate(["Login"]);
+    });
   }
 
   public Juego(tipo: string) {
@@ -37,6 +40,9 @@ export class MenuComponent implements OnInit {
         break;
       case "Tateti":
         this.router.navigate(["/Juegos/Tateti"]);
+        break;
+      case "Memotest":
+        this.router.navigate(["/Juegos/Memotest"]);
         break;
       case "Encontrar":
         this.router.navigate(["/Juegos/Encontrar"]);

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from "@angular/router";
 import { Subscription, BehaviorSubject } from "rxjs";
 import { AuthService } from "../../servicios/auth.service";
 import { User } from "firebase";
+import { ImagenesService } from '../../servicios/imagenes.service';
 
 @Component({
   selector: "app-login",
@@ -16,14 +17,20 @@ export class LoginComponent implements OnInit {
   public user: User;
   public error: boolean;
   public mensajeError: string;
+  public imgLogin:string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public imagenes: ImagenesService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.imagenes.traerGeneral().then(snap =>{
+      this.imgLogin = snap.data().imagenes.find(x => x.nombre === 'login.png').url;
+    });
+  }
 
   public Entrar() {
     this.authService.login(this.usuario, this.clave).then(() => {

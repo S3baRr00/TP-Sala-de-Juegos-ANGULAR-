@@ -24,6 +24,7 @@ import { AnagramaComponent } from "../componentes/anagrama/anagrama.component";
 import { TatetiComponent } from "../componentes/tateti/tateti.component";
 import { EncontrarComponent } from '../componentes/encontrar/encontrar.component';
 import { JuegosMasListadosComponent } from '../componentes/juegos-mas-listados/juegos-mas-listados.component';
+import { MemotestComponent } from '../componentes/memotest/memotest.component';
 import { UsuarioActivoGuard } from '../guards/usuario-activo.guard';
 
 
@@ -49,6 +50,7 @@ const MiRuteo = [
       { path: "PiedraPapelTijera", component: PiedraPapelOTijeraComponent },
       { path: "Tateti", component: TatetiComponent },
       { path: "Encontrar", component: EncontrarComponent },
+      { path: "Memotest", component: MemotestComponent },
       { path: "juegosMasListado/:juego", component: JuegosMasListadosComponent },
     ],
   },
